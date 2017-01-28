@@ -30,24 +30,23 @@ public class Human {
 	 * Random chance to be other.
 	 *
 	 */
-	public static void newHuman(boolean b) {
+	public static Human newHuman(boolean b) {
 		Random r = new Random();
 		int other = r.nextInt(4);
 		if (other == 0) {
-			new Human(Human.Type.OTHER);
-			return;
+			return new Human(Human.Type.OTHER);
 		}
 		int i = r.nextInt(1);
 		if (i == 0) {
-			new Human(Human.Type.FEMALE);
+			return new Human(Human.Type.FEMALE);
 		} else if (i == 1) {
-
-			new Human(Human.Type.MALE);
+			return new Human(Human.Type.MALE);
 		}
+		return null;
 	}
 
-	public static void newHuman(Type type) {
-		new Human(type);
+	public static Human newHuman(Type type) {
+		return new Human(type);
 	}
 
 	public Type getType() {
@@ -56,5 +55,18 @@ public class Human {
 	
 	public House getHouse() {
 		return house;
+	}
+	
+	public void setHouse(House house) {
+		this.house.removeHuman(this);
+		house.addHuman(this);
+	}
+	
+	public void setHouse(int i) {
+		try {
+			setHouse(House.houses.get(i));
+		} catch (IndexOutOfBoundsException e) {
+			
+		}
 	}
 }
