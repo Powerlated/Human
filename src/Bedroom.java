@@ -1,4 +1,4 @@
 
-public class Bedroom implements LivingSpace {
+public class Bedroom extends LivingSpace {
 	
 }

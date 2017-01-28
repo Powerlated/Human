@@ -16,7 +16,7 @@ public class Human {
 
 	private Human(Type type, House house) {
 		this.type = type;
-		House.ad
+		
 	}
 	
 	private Human(Type type, int house) {
