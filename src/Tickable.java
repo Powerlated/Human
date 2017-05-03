@@ -1,4 +1,3 @@
-
 public interface Tickable {
-	public void onTick();
+    public void onTick();
 }

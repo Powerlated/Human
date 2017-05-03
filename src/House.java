@@ -1,8 +1,4 @@
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class House extends LivingSpace {
@@ -11,7 +7,7 @@ public class House extends LivingSpace {
     private int id;
     private String name;
 
-    House() {
+    private House() {
         boolean b = true;
         while (b) {
             int i = ThreadLocalRandom.current().nextInt(1, 2000 + 1);
@@ -25,64 +21,100 @@ public class House extends LivingSpace {
         }
     }
 
-	/**Sets a house's name.*/
-    public boolean setName(String s) {
-        if (!exists(s)) {
-            System.out.println("House ID " + id
-        } else {
+    /**
+     * Creates a new house and sets its name.
+     */
+    public static House createHouse(String name) {
+        if (houses.size() >= 1000) {
+            System.out.println("Error: Houses up to capacity!");
+            return null;
+        }
+        House house = new House();
+        house.setName(name);
+        return house;
+    }
 
+    /**
+     * Checks if a house already has a specified ID.
+     */
+    public static boolean exists(int id) {
+        for (House house : houses) {
+            if (id == house.id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if a house already has a specified name.
+     */
+    public static boolean exists(String s) {
+        for (House house : houses) {
+            if (s.equals(house.name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Gets the house with the provided id.
+     */
+    public static House get(int i) {
+        for (House house : houses) {
+            if (i == house.id) {
+                return house;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Gets the house with the provided name.
+     */
+    public static House get(String s) {
+        for (House house : houses) {
+            if (s.equals(house.name)) {
+                return house;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Creates a new house with the name being the ID
+     */
+    public House createHouse() {
+        if (houses.size() >= 1000) {
+            System.out.println("Error: Houses up to capacity!");
+            return null;
+        }
+        return new House();
+    }
+
+    /**
+     * Sets a house's name.
+     */
+    public boolean setName(String name) {
+        if (!exists(name)) {
+            System.out.println("House ID " + id + "'s name has been set to: " + name);
+            return true;
+        } else {
+            System.out.println("The name, " + name + " conflicts with ID " + get(name));
+            return false;
         }
     }
 
-    /**Checks if a house already has a specified ID.*/
-	public static boolean exists(int i) {
-		for (House house : houses) {
-			if (i == house.id) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public HashSet<Human> getHumans() {
+        return humans;
+    }
 
-    /**Checks if a house already has a specified name.*/
-	public static boolean exists(String s) {
-		for (House house : houses) {
-			if (s.equals(house.name)) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public void addHuman(Human human) {
+        humans.add(human);
+    }
 
-    /**Gets the house with the provided id.*/
-	public static House get(int i) {
-		for (House house : houses) {
-			if (i == house.id) {
-				return house;
-			}
-		}
-		return null;
-	}
-
-    /**Gets the house with the provided name.*/
-	public static House get(String s) {
-		for (House house : houses) {
-			if (s.equals(house.name)) {
-				return house;
-			}
-		}
-		return null;
-	}
-
-	public HashSet<Human> getHumans() {
-		return humans;
-	}
-
-	public void addHuman(Human human) {
-		humans.add(human);
-	}
-
-	public void removeHuman(Human human) {
-		humans.remove(human);
-	}
+    public void removeHuman(Human human) {
+        humans.remove(human);
+    }
 }
