@@ -16,9 +16,9 @@ public class Human {
 
 	private Human(Type type, House house) {
 		this.type = type;
-		
+
 	}
-	
+
 	private Human(Type type, int house) {
 		this.type = type;
 	}
@@ -27,7 +27,7 @@ public class Human {
 	 * Makes a new human with a random type.
 	 *
 	 * @param b
-	 * Random chance to be other.
+	 *            Random chance to be other.
 	 *
 	 */
 	public static Human newHuman(boolean b) {
@@ -52,21 +52,16 @@ public class Human {
 	public Type getType() {
 		return type;
 	}
-	
+
 	public House getHouse() {
 		return house;
 	}
-	
+
 	public void setHouse(House house) {
-		this.house.removeHuman(this);
-		house.addHuman(this);
-	}
-	
-	public void setHouse(int i) {
-		try {
-			setHouse(House.houses.get(i));
-		} catch (IndexOutOfBoundsException e) {
-			
+		if (this.house != null) {
+			this.house.removeHuman(this);
 		}
+
+		house.addHuman(this);
 	}
 }
