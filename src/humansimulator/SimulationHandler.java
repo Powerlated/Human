@@ -1,3 +1,5 @@
+package humansimulator;
+
 public class SimulationHandler {
     public static void initiate() {
         House h = House.createHouse("First House");
