@@ -16,7 +16,7 @@ public class GUI {
         startSimuationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                SimulationHandler.initiate();
             }
         });
     }
@@ -29,7 +29,7 @@ public class GUI {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        JFrame frame = new JFrame("GUI");
+        JFrame frame = new JFrame("Human Simulator");
         frame.setContentPane(new GUI().panel1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
