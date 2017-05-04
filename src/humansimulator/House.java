@@ -12,7 +12,7 @@ public class House extends LivingSpace {
     private House() {
         boolean b = true;
         while (b) {
-            int i = ThreadLocalRandom.current().nextInt(1, 2000 + 1);
+            int i = ThreadLocalRandom.current().nextInt(1, 1000 + 1);
             if (!exists(i)) {
                 System.out.println("New house created with randomly generated ID: " + i);
                 System.out.println("Name of house set to randomly generated ID");
