@@ -1,24 +1,16 @@
 package humansimulator;
 
 import java.util.HashSet;
-import java.util.Random;
 
 public class Human extends SimulationObject implements Tickable {
-    public HashSet<Human> humans = new HashSet<Human>();
     long age;
+
+    private HashSet<Human> humans = new HashSet<Human>();
     private Type type;
     private House house;
-    private Human(Type type) {
-        this.type = type;
-    }
 
-    private Human(Type type, House house) {
-        this.type = type;
-
-    }
-
-    private Human(Type type, int house) {
-        this.type = type;
+    private Human() {
+        super();
     }
 
     /**
@@ -26,27 +18,22 @@ public class Human extends SimulationObject implements Tickable {
      *
      * @param b Random chance to be other.
      */
-    public static Human newHuman(boolean b) {
-        Random r = new Random();
-        int other = r.nextInt(4);
-        if (other == 0) {
-            return new Human(Human.Type.OTHER);
-        }
-        int i = r.nextInt(1);
-        if (i == 0) {
-            return new Human(Human.Type.FEMALE);
-        } else if (i == 1) {
-            return new Human(Human.Type.MALE);
-        }
-        return null;
-    }
 
     public static Human newHuman(Type type) {
-        return new Human(type);
+        return new Human();
     }
 
+    public HashSet<Human> getHumans() {
+        return humans;
+    }
+
+    ]
     public Type getType() {
         return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public House getHouse() {
@@ -63,7 +50,7 @@ public class Human extends SimulationObject implements Tickable {
 
     @Override
     public void onTick() {
-
+        age++;
     }
 
     public enum Type {

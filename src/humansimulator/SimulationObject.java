@@ -3,8 +3,8 @@ package humansimulator;
 /**
  * Created by Brian on 5/4/2017.
  */
-public class SimulationObject implements Tickable {
-    @Override
-    public void onTick() {
+public abstract class SimulationObject implements Tickable {
+    public SimulationObject() {
+        Ticking.register(this);
     }
 }
