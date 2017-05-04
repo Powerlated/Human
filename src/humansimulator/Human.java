@@ -3,11 +3,11 @@ package humansimulator;
 import java.util.HashSet;
 import java.util.Random;
 
-public class Human {
+public class Human extends SimulationObject implements Tickable {
     public HashSet<Human> humans = new HashSet<Human>();
+    long age;
     private Type type;
     private House house;
-
     private Human(Type type) {
         this.type = type;
     }
@@ -59,6 +59,11 @@ public class Human {
         }
 
         house.addHuman(this);
+    }
+
+    @Override
+    public void onTick() {
+
     }
 
     public enum Type {

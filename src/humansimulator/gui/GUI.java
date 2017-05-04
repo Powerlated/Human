@@ -16,6 +16,8 @@ public class GUI {
     private JButton stopSimulationButton;
     private JPanel panel;
     private JTextArea consoleTextArea;
+    private JButton addHumansButton;
+    private JTextField humansTextField;
 
     public GUI() {
         JTextArea txtConsole = new JTextArea();
@@ -25,8 +27,18 @@ public class GUI {
         startSimuationButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SimulationHandler.initiate();
-                System.out.println("Human Simulator started.");
+                if (!SimulationHandler.started) {
+                    SimulationHandler.initiate();
+                    System.out.println("Human Simulator started.");
+                } else {
+                    System.out.println("Human Simulator already started!");
+                }
+            }
+        });
+        addHumansButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
             }
         });
     }
