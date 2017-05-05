@@ -2,13 +2,17 @@ package humansimulator.gui;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.stream.IntStream;
 
 public class AddDialog extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JRadioButton humansRadioButton;
-    private JTextField textField1;
+    private JCheckBox humansCheckBox;
+    private JCheckBox housesCheckBox;
+    private JCheckBox checkBox3;
+    private JTextField howManyTextField1;
+    private JTextField howManyTextField;
 
     public AddDialog() {
         setContentPane(contentPane);
@@ -44,7 +48,9 @@ public class AddDialog extends JDialog {
     }
 
     private void onOK() {
-        // add your code here
+        IntStream.range(0, LIMIT).parallel().forEach($ -> {
+            // some thing thread safe.
+        });
         dispose();
     }
 
