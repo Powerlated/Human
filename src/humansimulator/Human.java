@@ -4,7 +4,7 @@ import java.util.HashSet;
 
 public class Human extends SimulationObject implements Tickable {
     long age;
-
+    private boolean dead = false;
     private HashSet<Human> humans = new HashSet<Human>();
     private Type type;
     private House house;
@@ -20,14 +20,15 @@ public class Human extends SimulationObject implements Tickable {
      */
 
     public static Human newHuman(Type type) {
-        return new Human();
+        Human h = new Human();
+        h.setType(type);
+        return h;
     }
 
     public HashSet<Human> getHumans() {
         return humans;
     }
 
-    ]
     public Type getType() {
         return type;
     }
@@ -50,7 +51,12 @@ public class Human extends SimulationObject implements Tickable {
 
     @Override
     public void onTick() {
-        age++;
+        if (!dead) {
+            age++;
+            if (age >= 1200) {
+                dead = true;
+            }
+        }
     }
 
     public enum Type {

@@ -16,8 +16,7 @@ public class GUI {
     private JButton stopSimulationButton;
     private JPanel panel;
     private JTextArea consoleTextArea;
-    private JButton addHumansButton;
-    private JTextField humansTextField;
+    private JButton addSomethingButton;
 
     public GUI() {
         JTextArea txtConsole = new JTextArea();
@@ -35,10 +34,16 @@ public class GUI {
                 }
             }
         });
-        addHumansButton.addActionListener(new ActionListener() {
+        addSomethingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                AddDialog dialog = new AddDialog();
+                dialog.setResizable(false);
+                dialog.pack();
+                dialog.setVisible(true);
+                dialog.setSize(new Dimension(194, 116));
+                dialog.revalidate();
+                dialog.repaint();
             }
         });
     }
